@@ -1,0 +1,28 @@
+node_modules/
+dist/
+test-evidence/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Local handoff, agent state and reference material (keep on this machine).
+/AGENTS.md
+/PROGRESS.md
+/Codex-Handoff-ALL-IN-ONE.md
+/codex-handoff/
+/project_memory/
+/README.local-handoff.md
+
+# Local QA sources and tools; not required to run/build the application.
+/tests/
+/playwright.config.ts
+/vitest.config.ts
+/package.qa.local.json
+/playwright-report/
+/test-results/
+
+# Editor/OS temporary files.
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,58 @@
+{
+  "datasetVersion": "DEMO_ONLY_2026-10-18",
+  "approvedForProduction": false,
+  "notice": "TÌNH HUỐNG GIẢ ĐỊNH — 3 câu mẫu, KHÔNG phải 15 câu chính thức",
+  "questions": [
+    {
+      "id": "DEMO_BASIC_01",
+      "level": "basic",
+      "question": "Một bài đăng thông báo thay đổi lịch thi nhưng không dẫn nguồn gốc. Bạn nên làm gì trước?",
+      "options": [
+        {"id": "a", "text": "Chia sẻ vì nhiều bạn đã thích."},
+        {"id": "b", "text": "Tìm và xem thông báo gốc của trường."},
+        {"id": "c", "text": "Tin vì thông báo xuất hiện nhiều lần."}
+      ],
+      "correctOptionId": "b",
+      "explanation": "Kiểm tra nguồn và ngày cập nhật từ đơn vị công bố trước khi kết luận.",
+      "skillTag": "source-checking",
+      "sources": [],
+      "version": "DEMO_ONLY",
+      "isDemo": true,
+      "isSyntheticScenario": true
+    },
+    {
+      "id": "DEMO_INTERMEDIATE_01",
+      "level": "intermediate",
+      "question": "Một ảnh thật được đăng lại kèm mô tả sự kiện mới nhưng không có ngày chụp. Bước nào hữu ích nhất?",
+      "options": [
+        {"id": "a", "text": "Kiểm tra xuất xứ và thời điểm của ảnh."},
+        {"id": "b", "text": "Chỉ dựa vào chú thích hiện tại."},
+        {"id": "c", "text": "Dựa vào số bình luận."}
+      ],
+      "correctOptionId": "a",
+      "explanation": "Hình ảnh có thể đúng nhưng bị đặt vào bối cảnh khác; cần xác định ngày, nguồn và nội dung nguyên gốc.",
+      "skillTag": "image-context",
+      "sources": [],
+      "version": "DEMO_ONLY",
+      "isDemo": true,
+      "isSyntheticScenario": true
+    },
+    {
+      "id": "DEMO_ADVANCED_01",
+      "level": "advanced",
+      "question": "Một bài viết có số liệu đúng nhưng kết luận rộng hơn dữ liệu hỗ trợ. Cách đánh giá nào phù hợp?",
+      "options": [
+        {"id": "a", "text": "Mặc định toàn bộ kết luận chính xác."},
+        {"id": "b", "text": "Bác bỏ mọi số liệu."},
+        {"id": "c", "text": "Tách dữ kiện và suy luận rồi kiểm tra bằng chứng cho kết luận."}
+      ],
+      "correctOptionId": "c",
+      "explanation": "Số liệu có thể đúng nhưng lập luận vẫn có thể thiếu bằng chứng để suy ra kết luận.",
+      "skillTag": "fact-vs-inference",
+      "sources": [],
+      "version": "DEMO_ONLY",
+      "isDemo": true,
+      "isSyntheticScenario": true
+    }
+  ]
+}
