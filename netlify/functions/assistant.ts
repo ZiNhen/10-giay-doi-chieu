@@ -16,8 +16,9 @@ function sources(): Source[] {
 }
 
 function relevantSources(query: string, items: Source[]) {
-  const terms = query.toLocaleLowerCase('vi').split(/\W+/).filter(term => term.length > 2);
-  return items.map(source => ({ source, score: terms.filter(term => `${source.title} ${source.passage}`.toLocaleLowerCase('vi').includes(term)).length }))
+  const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('vi');
+  const terms = normalize(query).split(/[^a-z0-9]+/).filter(term => term.length > 2);
+  return items.map(source => ({ source, score: terms.filter(term => normalize(`${source.title} ${source.passage}`).includes(term)).length }))
     .filter(item => item.score > 0).sort((a, b) => b.score - a.score).slice(0, maxSources).map(item => item.source);
 }
 
