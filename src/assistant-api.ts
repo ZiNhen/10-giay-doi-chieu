@@ -2,7 +2,16 @@ import { isSource, nonempty, record, type Source } from './domain';
 export const statuses = ['answered', 'partial', 'insufficient_evidence', 'out_of_scope', 'rate_limited', 'unavailable', 'error'] as const;
 export type AnswerStatus = typeof statuses[number] | 'timeout' | 'offline';
 export interface Citation extends Source { id: string; passage?: string }
-export interface AssistantResponse { status: AnswerStatus; answer: string; citations: Citation[]; limitations?: string; requestId?: string }
+export interface AssistantResponse {
+  status: AnswerStatus;
+  answer: string;
+  citations: Citation[];
+  confidence?: number;
+  confidenceLabel?: 'high' | 'medium' | 'low';
+  warning?: string;
+  limitations?: string;
+  requestId?: string;
+}
 export interface AssistantConfig { enabled: boolean; endpoint: string | null; verifiedFreeThrough: string | null; approvedSources: Source[] }
 export const disabledConfig: AssistantConfig = { enabled: false, endpoint: null, verifiedFreeThrough: null, approvedSources: [] };
 export const messages: Record<AnswerStatus, { title: string; detail: string }> = {
@@ -27,6 +36,9 @@ export function validConfig(value: unknown): value is AssistantConfig {
 export function parseResponse(value: unknown, config: AssistantConfig): AssistantResponse {
   if (!record(value) || !statuses.includes(value.status as typeof statuses[number]) || typeof value.answer !== 'string' || value.answer.length > 12000 || !Array.isArray(value.citations)
     || value.citations.length > 20 || (value.limitations !== undefined && typeof value.limitations !== 'string')
+    || (value.confidence !== undefined && (typeof value.confidence !== 'number' || !Number.isInteger(value.confidence) || value.confidence < 0 || value.confidence > 100))
+    || (value.confidenceLabel !== undefined && !['high', 'medium', 'low'].includes(value.confidenceLabel as string))
+    || (value.warning !== undefined && typeof value.warning !== 'string')
     || (value.requestId !== undefined && !nonempty(value.requestId))) return result('error');
   const ids = new Set<string>();
   for (const c of value.citations) {
