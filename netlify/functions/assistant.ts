@@ -4,7 +4,7 @@ const maxSources = 5;
 
 function sources(): Source[] {
   try {
-    const value: unknown = JSON.parse(Netlify.env.get('ASSISTANT_SOURCES_JSON') ?? '[]');
+    const value: unknown = JSON.parse(process.env.ASSISTANT_SOURCES_JSON ?? '[]');
     if (!Array.isArray(value)) return [];
     return value.filter((item): item is Source => {
       if (!item || typeof item !== 'object') return false;
@@ -23,7 +23,7 @@ function relevantSources(query: string, items: Source[]) {
 
 export default async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') return Response.json({ status: 'error', answer: '', citations: [] }, { status: 405 });
-  const apiKey = Netlify.env.get('GEMINI_API_KEY');
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return Response.json({ status: 'unavailable', answer: '', citations: [] }, { status: 503 });
   let body: unknown;
   try { body = await request.json(); } catch { return Response.json({ status: 'error', answer: '', citations: [] }, { status: 400 }); }
