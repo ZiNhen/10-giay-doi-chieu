@@ -1,1 +1,13 @@
-{"enabled":false,"endpoint":null,"verifiedFreeThrough":null,"approvedSources":[]}
+{
+  "enabled": true,
+  "endpoint": "/api/assistant",
+  "verifiedFreeThrough": "2026-11-09",
+  "approvedSources": [
+    {
+      "title": "Cổng thông tin điện tử Chính phủ",
+      "url": "https://chinhphu.vn/",
+      "publisher": "Cổng thông tin điện tử Chính phủ",
+      "checkedAt": "2026-10-18"
+    }
+  ]
+}
