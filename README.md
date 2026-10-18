@@ -42,7 +42,18 @@ Build xuất ra `dist/`. Preview mặc định tại `http://127.0.0.1:4173`. Th
 - `public/data/quiz.official.json`: nơi thay bộ câu hỏi được nhóm KS phê duyệt. Runtime chỉ nhận đủ 15 câu, đúng 5 câu mỗi cấp độ, ID duy nhất, đáp án hợp lệ, giải thích, skillTag và nguồn HTTPS cho khẳng định thực tế. Xem kiểu `Dataset`/`Question` và kiểm tra `validateDataset` trong `src/domain.ts`. Tăng `datasetVersion` khi thay nội dung, thứ tự hay đáp án; không tự bật phê duyệt cho dữ liệu mẫu.
 - `src/surveys.config.json`: URL Google Forms, cờ `enabled` và lịch mở/đóng. Chỉ bật sau khi nhóm khảo sát xác nhận. Mốc thời gian tính theo giờ Việt Nam, gồm cả ngày kết thúc. Khảo sát tách biệt với Quiz.
 - `src/content.ts`: bài học và tài liệu đọc thêm; không phải kho nguồn AI đã duyệt.
-- `public/data/assistant.json`: AI mặc định tắt. Chỉ bật sau khi có backend miễn phí được xác minh và kho nguồn được duyệt. Adapter yêu cầu cùng origin tại `/api/assistant`, `verifiedFreeThrough` hợp lệ xuyên suốt chiến dịch và `approvedSources`. Xem hợp đồng phản hồi trong `src/assistant-api.ts`; câu trả lời phải gắn `[citationId]` với nguồn có tiêu đề/URL khớp danh sách duyệt. Backend vẫn phải xác minh bằng chứng, giới hạn yêu cầu và bảo vệ dữ liệu; kiểm tra phía trình duyệt không thay thế các việc này.
+- `public/data/assistant.json`: AI mặc định tắt. Chỉ bật sau khi có backend miễn phí được xác minh và kho nguồn được duyệt. Adapter yêu cầu cùng origin tại `/api/assistant`, `verifiedFreeThrough` hợp lệ xuyên suốt chiến dịch và `approvedSources`. Xem hợp đồng phản hồi trong `src/assistant-api.ts`; câu trả lời phải gắn `[citationId]` với nguồn có tiêu đề/URL khớp danh sách duyệt. Backend Gemini MVP nằm ở `api/assistant.ts`: cấu hình `GEMINI_API_KEY` và `ASSISTANT_SOURCES_JSON` trên Vercel/Netlify, không đưa khóa vào frontend. Mỗi nguồn cần `title`, `url`, `publisher` và `passage`; endpoint chỉ gửi các đoạn khớp câu hỏi cho Gemini, yêu cầu JSON có dẫn chứng và cảnh báo khi thiếu bằng chứng. Backend vẫn phải xác minh bằng chứng, giới hạn yêu cầu và bảo vệ dữ liệu; kiểm tra phía trình duyệt không thay thế các việc này.
+
+### Bật Gemini MVP trên Vercel/Netlify
+
+Tạo hai biến môi trường ở phần cấu hình project:
+
+```text
+GEMINI_API_KEY=...        # chỉ ở backend, không dùng VITE_
+ASSISTANT_SOURCES_JSON=[{"title":"Tên tài liệu","url":"https://coquan.gov.vn/tai-lieu","publisher":"Cơ quan chính phủ","passage":"Đoạn nội dung đã kiểm tra từ tài liệu.","checkedAt":"2026-10-18"}]
+```
+
+`passage` phải là nội dung đã được nhóm duyệt và ghi rõ nguồn gốc; không nên đưa toàn bộ Internet vào kho nguồn. Sau khi deploy backend, cập nhật `public/data/assistant.json` với `enabled: true`, `endpoint: "/api/assistant"`, ngày `verifiedFreeThrough` còn hiệu lực và danh sách `approvedSources` khớp URL/tiêu đề trong kho. Nếu chưa có kho nguồn chính phủ được duyệt, giữ AI tắt để tránh tạo cảm giác xác thực giả.
 
 Tiến độ Quiz được lưu trong `sessionStorage` của tab, điểm được tính từ các đáp án đã gửi. Không thu tên/email, không lưu nội dung chat và không có dịch vụ analytics; số liệu hiển thị “Chưa đo”. Không có bảo đảm chống sửa đáp án phía trình duyệt.
 
