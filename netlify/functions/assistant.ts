@@ -2,7 +2,7 @@ type Source = { title: string; url: string; publisher: string; passage: string; 
 const model = 'gemini-2.5-flash';
 const maxSources = 5;
 
-function sources(): Source[] {
+function configuredSources(): Source[] {
   try {
     const value: unknown = JSON.parse(process.env.ASSISTANT_SOURCES_JSON ?? '[]');
     if (!Array.isArray(value)) return [];
@@ -13,6 +13,23 @@ function sources(): Source[] {
         && typeof source.publisher === 'string' && typeof source.passage === 'string' && source.passage.length > 20; } catch { return false; }
     });
   } catch { return []; }
+}
+
+async function sources(request: Request): Promise<Source[]> {
+  const configured = configuredSources();
+  try {
+    const response = await fetch(new URL('/data/quiz.official.json', request.url), { cache: 'no-store' });
+    if (!response.ok) return configured;
+    const dataset = await response.json() as { questions?: { question?: string; explanation?: string; sources?: Omit<Source, 'passage'>[] }[] };
+    const quizSources = (dataset.questions ?? []).flatMap(question => (question.sources ?? []).map(source => ({
+      ...source,
+      passage: `${question.question ?? ''} ${question.explanation ?? ''}`
+    })));
+    const all = [...configured, ...quizSources];
+    return all.filter((source, index) => all.findIndex(candidate => candidate.url === source.url) === index);
+  } catch {
+    return configured;
+  }
 }
 
 function relevantSources(query: string, items: Source[]) {
@@ -40,9 +57,10 @@ export default async function handler(request: Request): Promise<Response> {
   const message = body && typeof body === 'object' && typeof (body as Record<string, unknown>).message === 'string'
     ? ((body as Record<string, string>).message).trim() : '';
   if (!message || message.length > 1200) return Response.json({ status: 'error', answer: '', citations: [] }, { status: 400 });
-  const context = relevantSources(message, sources());
+  const availableSources = await sources(request);
+  const context = relevantSources(message, availableSources);
   if (!context.length) {
-    const related = relatedSources(message, sources());
+    const related = relatedSources(message, availableSources);
     const citations = related.map((source, index) => ({ ...source, id: `S${index + 1}` }));
     return Response.json({
       status: 'insufficient_evidence',

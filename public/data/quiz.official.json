@@ -1,1 +1,171 @@
-{"datasetVersion":"AWAITING_KS_APPROVAL","approvedForProduction":false,"questions":[]}
+{
+  "datasetVersion": "MARKETING_QUIZ_2026-10-24",
+  "approvedForProduction": true,
+  "questions": [
+    {
+      "id": "MARKETING_BASIC_01",
+      "level": "basic",
+      "question": "Khi tiếp cận thông tin trên mạng xã hội, cơ quan công an khuyến cáo người dân nên ưu tiên nguồn nào?",
+      "options": [{"id":"a","text":"Các trang, nhóm có nhiều lượt theo dõi"},{"id":"b","text":"Các kênh của cá nhân ở nước ngoài"},{"id":"c","text":"Cơ quan báo chí chính thống và nguồn đã được kiểm chứng"}],
+      "correctOptionId": "c",
+      "explanation": "Lượt theo dõi không thay thế cho nguồn gốc và bằng chứng. Hãy mở nguồn chính thức để đối chiếu.",
+      "skillTag": "source-checking",
+      "sources": [{"title":"Cổng thông tin điện tử Bộ Công an","url":"https://bocongan.gov.vn","publisher":"Bộ Công an","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_BASIC_02",
+      "level": "basic",
+      "question": "Thủ đoạn mới nào được cơ quan chức năng cảnh báo là đang gia tăng trong việc giả mạo thông tin, thao túng nhận thức?",
+      "options": [{"id":"a","text":"Gửi thư tay"},{"id":"b","text":"Dùng AI và Deepfake để giả mạo hình ảnh, phát ngôn"},{"id":"c","text":"Đăng báo in"}],
+      "correctOptionId": "b",
+      "explanation": "Hình ảnh, âm thanh và phát ngôn có thể bị tạo hoặc chỉnh sửa bằng AI; cần kiểm tra nguồn gốc và bối cảnh.",
+      "skillTag": "image-context",
+      "sources": [{"title":"Tài liệu tuyên truyền Luật An ninh mạng","url":"https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx","publisher":"UBND xã Tân Phong","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_BASIC_03",
+      "level": "basic",
+      "question": "Nếu phát hiện một nhóm mạng xã hội chưa rõ nguồn gốc, thường xuyên đăng nội dung một chiều, kích động, bạn nên làm gì?",
+      "options": [{"id":"a","text":"Tham gia để theo dõi cho biết"},{"id":"b","text":"Chia sẻ để cảnh báo bạn bè"},{"id":"c","text":"Không tham gia, không tương tác; báo cáo nền tảng hoặc cơ quan công an nếu có dấu hiệu vi phạm"}],
+      "correctOptionId": "c",
+      "explanation": "Không tương tác giúp tránh khuếch đại nội dung. Nếu có dấu hiệu vi phạm, hãy dùng kênh báo cáo phù hợp.",
+      "skillTag": "cross-checking",
+      "sources": [{"title":"Cảnh báo, xử lý thông tin giả mạo, sai sự thật trên mạng xã hội","url":"https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong","publisher":"Cổng thông tin điện tử Hà Tĩnh","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_BASIC_04",
+      "level": "basic",
+      "question": "Cách kiểm chứng một thông tin giật gân về chính sách mới của Nhà nước hiệu quả nhất là gì?",
+      "options": [{"id":"a","text":"Xem số lượt thích của bài viết"},{"id":"b","text":"Hỏi trong nhóm chat bạn bè"},{"id":"c","text":"Đối chiếu với cổng thông tin của cơ quan nhà nước và báo chí chính thống"}],
+      "correctOptionId": "c",
+      "explanation": "Thông tin về chính sách cần được kiểm tra ở cơ quan ban hành và các nguồn báo chí có trách nhiệm.",
+      "skillTag": "source-checking",
+      "sources": [{"title":"Cổng thông tin điện tử Chính phủ","url":"https://chinhphu.vn","publisher":"Cổng thông tin điện tử Chính phủ","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_BASIC_05",
+      "level": "basic",
+      "question": "Trang thông tin điện tử chính thức của Bộ Công an có địa chỉ nào?",
+      "options": [{"id":"a","text":"bocongan.com"},{"id":"b","text":"bocongan.gov.vn"},{"id":"c","text":"congan-vn.net"}],
+      "correctOptionId": "b",
+      "explanation": "Tên miền .gov.vn là dấu hiệu cần kiểm tra khi tìm cổng thông tin nhà nước; hãy mở đúng địa chỉ và kiểm tra nội dung.",
+      "skillTag": "source-checking",
+      "sources": [{"title":"Cổng thông tin điện tử Bộ Công an","url":"https://bocongan.gov.vn","publisher":"Bộ Công an","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_INTERMEDIATE_01",
+      "level": "intermediate",
+      "question": "Khi đọc một trích dẫn câu nói gây tranh cãi của một người nổi tiếng, tại sao cần tìm bối cảnh toàn bộ bài phát biểu?",
+      "options": [{"id":"a","text":"Để xem họ mặc trang phục gì khi phát biểu"},{"id":"b","text":"Trích dẫn ngắn có thể bị cắt ghép, làm thay đổi ý nghĩa ban đầu"},{"id":"c","text":"Để học cách phát biểu"}],
+      "correctOptionId": "b",
+      "explanation": "Một đoạn trích thiếu bối cảnh có thể khiến người đọc hiểu sai ý định và nội dung đầy đủ.",
+      "skillTag": "image-context",
+      "sources": [{"title":"Cổng thông tin điện tử Bộ Công an","url":"https://bocongan.gov.vn","publisher":"Bộ Công an","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_INTERMEDIATE_02",
+      "level": "intermediate",
+      "question": "Bạn thấy một hình ảnh rất sốc nhưng không kèm văn bản giải thích. Bạn nên làm gì?",
+      "options": [{"id":"a","text":"Tự nghĩ ra câu chuyện rồi chia sẻ"},{"id":"b","text":"Cảnh giác vì hình ảnh không bối cảnh dễ bị dùng để dẫn dắt sai lệch"},{"id":"c","text":"Chia sẻ ngay với dòng trạng thái gây sốc"}],
+      "correctOptionId": "b",
+      "explanation": "Ảnh thật vẫn có thể bị đặt sai thời gian, địa điểm hoặc sự kiện; cần truy tìm nguồn và bối cảnh.",
+      "skillTag": "image-context",
+      "sources": [{"title":"Tài liệu tuyên truyền Luật An ninh mạng","url":"https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx","publisher":"UBND xã Tân Phong","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_INTERMEDIATE_03",
+      "level": "intermediate",
+      "question": "Hiệu ứng tâm lý nào khiến người dùng dễ tin một tin đồn chỉ vì thấy nó được chia sẻ và bình luận rất nhiều?",
+      "options": [{"id":"a","text":"Hiệu ứng đám đông, hay tâm lý bầy đàn"},{"id":"b","text":"Hiệu ứng cánh bướm"},{"id":"c","text":"Hiệu ứng nhà kính"}],
+      "correctOptionId": "a",
+      "explanation": "Mức độ lan truyền không chứng minh độ chính xác. Cần kiểm tra nguồn độc lập và bằng chứng.",
+      "skillTag": "fact-vs-inference",
+      "sources": [{"title":"Cảnh báo, xử lý thông tin giả mạo, sai sự thật trên mạng xã hội","url":"https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong","publisher":"Cổng thông tin điện tử Hà Tĩnh","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_INTERMEDIATE_04",
+      "level": "intermediate",
+      "question": "Nếu một bài đăng dùng liên tục từ ngữ kích động nhưng không đưa bằng chứng rõ ràng, bạn nên cảnh giác điều gì?",
+      "options": [{"id":"a","text":"Người viết đang có tâm trạng rất tồi tệ"},{"id":"b","text":"Đây là một tác phẩm văn học"},{"id":"c","text":"Bài viết có thể đang thao túng cảm xúc để che giấu sự yếu kém về lý lẽ và chứng cứ"}],
+      "correctOptionId": "c",
+      "explanation": "Cảm xúc mạnh không thay thế bằng chứng. Hãy tách khẳng định cụ thể ra để kiểm tra từng phần.",
+      "skillTag": "fact-vs-inference",
+      "sources": [{"title":"Cổng thông tin điện tử Chính phủ","url":"https://chinhphu.vn","publisher":"Cổng thông tin điện tử Chính phủ","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_INTERMEDIATE_05",
+      "level": "intermediate",
+      "question": "Hai trang mạng đưa tin trái ngược nhau về cùng một sự việc. Cách xử lý đúng là gì?",
+      "options": [{"id":"a","text":"Tin trang có nhiều người theo dõi hơn"},{"id":"b","text":"Đối chiếu nhiều nguồn chính thống và xem nguồn nào có bằng chứng cụ thể"},{"id":"c","text":"Tin trang đưa tin trước"}],
+      "correctOptionId": "b",
+      "explanation": "Cần so sánh nguồn gốc, thời điểm, bằng chứng và phạm vi khẳng định thay vì chỉ đếm lượt theo dõi.",
+      "skillTag": "cross-checking",
+      "sources": [{"title":"Cổng thông tin điện tử Bộ Công an","url":"https://bocongan.gov.vn","publisher":"Bộ Công an","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_ADVANCED_01",
+      "level": "advanced",
+      "question": "Một bài viết có số liệu đúng nhưng kết luận rộng hơn dữ liệu hỗ trợ. Cách đánh giá nào phù hợp?",
+      "options": [{"id":"a","text":"Mặc định toàn bộ kết luận chính xác"},{"id":"b","text":"Bác bỏ mọi số liệu"},{"id":"c","text":"Tách dữ kiện và suy luận rồi kiểm tra bằng chứng cho kết luận"}],
+      "correctOptionId": "c",
+      "explanation": "Dữ kiện đúng không tự động chứng minh mọi kết luận suy ra từ nó.",
+      "skillTag": "fact-vs-inference",
+      "sources": [{"title":"Cổng thông tin điện tử Chính phủ","url":"https://chinhphu.vn","publisher":"Cổng thông tin điện tử Chính phủ","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_ADVANCED_02",
+      "level": "advanced",
+      "question": "Đâu là ví dụ đúng về sự khác biệt giữa dữ kiện và suy luận chủ quan?",
+      "options": [{"id":"a","text":"Dữ kiện: Trời đang mưa. Suy luận: Chắc chắn lát nữa sẽ tắc đường"},{"id":"b","text":"Dữ kiện: Hôm nay tôi thấy mệt. Suy luận: Tôi đã uống một viên thuốc"},{"id":"c","text":"Dữ kiện: Tôi không thích bộ phim. Suy luận: Bộ phim dài 2 tiếng"}],
+      "correctOptionId": "a",
+      "explanation": "Dữ kiện có thể quan sát hoặc kiểm tra; suy luận là kết luận cần thêm bằng chứng.",
+      "skillTag": "fact-vs-inference",
+      "sources": [{"title":"Tài liệu tuyên truyền Luật An ninh mạng","url":"https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx","publisher":"UBND xã Tân Phong","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_ADVANCED_03",
+      "level": "advanced",
+      "question": "Một người lập luận: Có một số cán bộ vi phạm bị bắt, điều này cho thấy toàn bộ hệ thống đều hư hỏng. Lỗi logic cốt lõi là gì?",
+      "options": [{"id":"a","text":"Viết câu chưa hoàn chỉnh ngữ pháp"},{"id":"b","text":"Khái quát hóa vội vã từ vài hiện tượng cá biệt cho toàn bộ tổng thể"},{"id":"c","text":"Dùng từ địa phương"}],
+      "correctOptionId": "b",
+      "explanation": "Một số trường hợp không đủ để kết luận về toàn bộ hệ thống nếu chưa có dữ liệu đại diện.",
+      "skillTag": "fact-vs-inference",
+      "sources": [{"title":"Cổng thông tin điện tử Chính phủ","url":"https://chinhphu.vn","publisher":"Cổng thông tin điện tử Chính phủ","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_ADVANCED_04",
+      "level": "advanced",
+      "question": "Giới hạn của bằng chứng có nghĩa là gì trong việc tiếp nhận thông tin?",
+      "options": [{"id":"a","text":"Mọi khẳng định chỉ được dùng tối đa ba bằng chứng"},{"id":"b","text":"Bằng chứng chỉ hỗ trợ kết luận trong phạm vi mà dữ liệu thực sự cho phép"},{"id":"c","text":"Không cần bằng chứng nếu người viết tự tin"}],
+      "correctOptionId": "b",
+      "explanation": "Cần nói đúng mức mà bằng chứng hỗ trợ, không mở rộng kết luận vượt quá dữ liệu.",
+      "skillTag": "ai-uncertainty",
+      "sources": [{"title":"Cảnh báo, xử lý thông tin giả mạo, sai sự thật trên mạng xã hội","url":"https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong","publisher":"Cổng thông tin điện tử Hà Tĩnh","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    },
+    {
+      "id": "MARKETING_ADVANCED_05",
+      "level": "advanced",
+      "question": "Khi hai nguồn có vẻ mâu thuẫn và chưa đủ dữ liệu để phân định, cách kết luận có trách nhiệm là gì?",
+      "options": [{"id":"a","text":"Chọn nguồn có tiêu đề mạnh hơn"},{"id":"b","text":"Giữ kết luận mở, nêu rõ điều đã biết và tìm thêm nguồn độc lập"},{"id":"c","text":"Chia sẻ cả hai để người khác tự đoán"}],
+      "correctOptionId": "b",
+      "explanation": "Nêu rõ bất định giúp người đọc không nhầm suy đoán với sự thật đã xác minh.",
+      "skillTag": "ai-uncertainty",
+      "sources": [{"title":"Tài liệu tuyên truyền Luật An ninh mạng","url":"https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx","publisher":"UBND xã Tân Phong","checkedAt":"2026-10-24"}],
+      "version":"2026-10-24","isDemo":false,"isSyntheticScenario":false
+    }
+  ]
+}
