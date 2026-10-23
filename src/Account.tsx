@@ -10,7 +10,14 @@ export function AccountButton() {
   return <><button className="account-button" onClick={() => setOpen(true)}><LogIn size={15} /> Đăng nhập</button>{open && <AccountDialog configured={configured} onClose={() => setOpen(false)} />}</>;
 }
 
-function AccountDialog({ configured, onClose }: { configured: boolean; onClose: () => void }) {
+export function AuthGate({ service }: { service: 'AI' | 'Quiz' }) {
+  const { user, configured } = useAuth();
+  const [open, setOpen] = useState(false);
+  if (user) return null;
+  return <section className="panel auth-gate"><div className="account-icon"><LogIn size={22} /></div><p className="eyebrow">CẦN ĐĂNG NHẬP</p><h1>Đăng nhập để dùng {service}</h1><p className="lead">Bạn vẫn có thể xem toàn bộ website. Hãy đăng nhập hoặc đăng ký và xác nhận email để sử dụng dịch vụ này.</p><button className="button primary" onClick={() => setOpen(true)} disabled={!configured}><LogIn size={17} /> Đăng nhập / Đăng ký</button>{!configured && <p className="account-message">Website chưa được cấu hình Supabase.</p>}{open && <AccountDialog configured={configured} onClose={() => setOpen(false)} />}</section>;
+}
+
+export function AccountDialog({ configured, onClose }: { configured: boolean; onClose: () => void }) {
   const { signIn, signUp } = useAuth();
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [username, setUsername] = useState('');

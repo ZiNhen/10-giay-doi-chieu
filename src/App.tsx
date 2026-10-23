@@ -5,12 +5,18 @@ import { QuizProvider } from './quiz-context';
 import { QuizPage, ResultPage } from './Quiz';
 import { Assistant } from './Assistant';
 import { Learn, Survey } from './Pages';
-import { AccountButton } from './Account';
+import { AccountButton, AuthGate } from './Account';
+import { useAuth } from './auth';
+import type { ReactNode } from 'react';
 const nav = [
   { to: '/', name: 'Home', icon: House }, { to: '/learn', name: 'Học', icon: BookOpen },
   { to: '/quiz', name: 'Quiz', icon: Layers }, { to: '/assistant', name: 'AI', icon: Sparkles },
   { to: '/survey', name: 'Khảo sát', icon: ClipboardList },
 ];
+function Protected({ service, children }: { service: 'AI' | 'Quiz'; children: ReactNode }) {
+  const { user } = useAuth();
+  return user ? children : <AuthGate service={service} />;
+}
 export function SkillCards() {
   const cards = [
     { to: '/quiz?level=basic', title: 'Cơ bản', detail: 'Bắt đầu từ nguồn tin', className: 'blue', icon: Layers, number: '01' },
@@ -60,7 +66,7 @@ export default function App() {
   }, []);
   return <QuizProvider><RouteEffects /><a className="skip-link" href="#main">Bỏ qua đến nội dung chính</a><div className="app-shell"><aside className="sidebar"><Link to="/" className="brand"><span className="brand-mark">10<span>″</span></span><span>Giây<br /><b>Đối Chiếu</b></span></Link><p className="sidebar-caption">DỪNG LẠI ĐỂ HIỂU HƠN</p><nav aria-label="Điều hướng chính">{nav.map(n => <NavLink key={n.to} to={n.to} end={n.to === '/'} className={n.to === '/quiz' ? 'quiz-nav' : ''}><span className="nav-icon"><n.icon size={23} strokeWidth={1.7} aria-hidden="true" /></span><span>{n.name}</span></NavLink>)}</nav><div className="sidebar-note"><ShieldCheck size={26} /><p>Chia sẻ có hiểu biết.<br />Kết nối có trách nhiệm.</p><span>Không tài khoản · Không quảng cáo</span></div></aside>
     <div className="main-shell"><header className="topbar"><Link to="/" className="mobile-brand"><span className="brand-mark">10<span>″</span></span><b>Giây Đối Chiếu</b></Link><span className="desktop-greeting">Chào bạn, cùng nhìn kỹ hơn nhé.</span><div className="topbar-actions"><span className="topbar-note"><span className="status-dot" /> Không gian học kỹ năng</span><AccountButton /></div></header>
-      <main id="main" tabIndex={-1}>{offline && <div className="notice" role="status"><WifiOff size={21} />Bạn đang ngoại tuyến. Nội dung đã tải vẫn đọc được; liên kết ngoài cần kết nối mạng.</div>}<Routes><Route path="/" element={<Home />} /><Route path="/learn" element={<Learn />} /><Route path="/quiz" element={<QuizPage key={location.search} />} /><Route path="/quiz/result" element={<ResultPage />} /><Route path="/assistant" element={<Assistant />} /><Route path="/survey" element={<Survey />} /><Route path="*" element={<section className="panel empty"><CircleHelp size={48} /><p className="eyebrow">404 · LẠC ĐƯỜNG MỘT CHÚT</p><h1>Trang này không tồn tại</h1><p>Hãy trở về và chọn một điều mới để khám phá.</p><Link to="/" className="button primary">Về Home <ArrowRight size={18} /></Link></section>} /></Routes></main>
+      <main id="main" tabIndex={-1}>{offline && <div className="notice" role="status"><WifiOff size={21} />Bạn đang ngoại tuyến. Nội dung đã tải vẫn đọc được; liên kết ngoài cần kết nối mạng.</div>}<Routes><Route path="/" element={<Home />} /><Route path="/learn" element={<Learn />} /><Route path="/quiz" element={<Protected service="Quiz"><QuizPage key={location.search} /></Protected>} /><Route path="/quiz/result" element={<Protected service="Quiz"><ResultPage /></Protected>} /><Route path="/assistant" element={<Protected service="AI"><Assistant /></Protected>} /><Route path="/survey" element={<Survey />} /><Route path="*" element={<section className="panel empty"><CircleHelp size={48} /><p className="eyebrow">404 · LẠC ĐƯỜNG MỘT CHÚT</p><h1>Trang này không tồn tại</h1><p>Hãy trở về và chọn một điều mới để khám phá.</p><Link to="/" className="button primary">Về Home <ArrowRight size={18} /></Link></section>} /></Routes></main>
       <footer><span><b>10 Giây Đối Chiếu</b> · Dừng lại. Kiểm tra. Đối chiếu.</span><span>Số liệu tham gia: <b>Chưa đo</b></span></footer>
     </div></div></QuizProvider>;
 }
