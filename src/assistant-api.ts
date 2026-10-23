@@ -1,5 +1,5 @@
 import { isSource, nonempty, record, type Source } from './domain';
-export const statuses = ['answered', 'partial', 'insufficient_evidence', 'out_of_scope', 'rate_limited', 'unavailable', 'error'] as const;
+export const statuses = ['answered', 'partial', 'insufficient_evidence', 'greeting', 'out_of_scope', 'rate_limited', 'unavailable', 'error'] as const;
 export type AnswerStatus = typeof statuses[number] | 'timeout' | 'offline';
 export interface Citation extends Source { id: string; passage?: string }
 export interface AssistantResponse {
@@ -18,6 +18,7 @@ export const messages: Record<AnswerStatus, { title: string; detail: string }> =
   answered: { title: 'Câu trả lời có nguồn', detail: 'Mở tài liệu để kiểm tra từng dẫn chứng.' },
   partial: { title: 'Mới có một phần bằng chứng', detail: 'Một số khía cạnh chưa được tài liệu hỗ trợ. Chưa nên kết luận toàn bộ.' },
   insufficient_evidence: { title: 'Chưa đủ bằng chứng', detail: 'Không tìm thấy bằng chứng không có nghĩa là thông tin sai. Hãy bổ sung nguồn hoặc bối cảnh.' },
+  greeting: { title: 'Lời chào', detail: 'Bạn có thể đặt câu hỏi để bắt đầu đối chiếu thông tin.' },
   out_of_scope: { title: 'Ngoài phạm vi hỗ trợ', detail: 'Hãy hỏi về kiểm tra nguồn, bối cảnh hình ảnh hoặc cách đối chiếu thông tin.' },
   rate_limited: { title: 'Đã đến giới hạn yêu cầu', detail: 'Vui lòng đợi một lúc rồi thử lại.' },
   unavailable: { title: 'Trợ lý AI chưa khả dụng', detail: 'Chưa có dịch vụ AI miễn phí và kho nguồn được xác nhận cho website. Bạn có thể đọc hướng dẫn tại Góc kiến thức.' },

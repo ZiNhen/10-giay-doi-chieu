@@ -4,27 +4,123 @@
   "verifiedFreeThrough": "2026-11-09",
   "approvedSources": [
     {
+      "title": "Luật An ninh mạng 2025 số 116/2025/QH15 – Toàn văn",
+      "url": "https://thuvienphapluat.vn/van-ban/cong-nghe-thong-tin/Luat-An-ninh-mang-2025-so-116-2025-QH15-666020.aspx",
+      "publisher": "Thư viện Pháp luật",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Công an Đà Nẵng xử lý hơn 100 người tương tác trên các trang Facebook phản động",
+      "url": "https://vov.vn/phap-luat/cong-an-da-nang-xu-ly-hon-100-nguoi-tuong-tac-tren-cac-trang-facebok-phan-dong-post1309339.vov",
+      "publisher": "VOV",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Công an Thái Nguyên làm việc với 2 người tương tác với trang phản động",
+      "url": "https://vov.vn/phap-luat/cong-an-thai-nguyen-lam-viec-voi-2-nguoi-tuong-tac-voi-trang-phan-dong-post1312801.vov",
+      "publisher": "VOV",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Tương tác với trang mạng phản động, 3 người ở Thái Nguyên bị xử lý",
+      "url": "https://vov.vn/phap-luat/tuong-tac-voi-trang-mang-phan-dong-3-nguoi-o-thai-nguyen-bi-xu-ly-post1298101.vov",
+      "publisher": "VOV",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Chia sẻ bài viết chống phá trên mạng xã hội, người đàn ông bị mời làm việc",
+      "url": "https://tienphong.vn/chia-se-bai-viet-chong-pha-tren-mang-xa-hoi-nguoi-dan-ong-bi-moi-lam-viec-post1855828.tpo",
+      "publisher": "Tiền Phong",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Chia sẻ bài viết từ trang phản động, người đàn ông bị phạt 12,5 triệu đồng",
+      "url": "https://baolaocai.vn/chia-se-bai-viet-tu-trang-phan-dong-nguoi-dan-ong-bi-phat-125-trieu-dong-post906172.html",
+      "publisher": "Báo Lào Cai",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Xử phạt người đàn ông chia sẻ bài viết sai sự thật của đối tượng phản động",
+      "url": "https://baovanhoa.vn/phap-luat/xu-phat-nguoi-dan-ong-chia-se-bai-viet-sai-su-that-cua-doi-tuong-phan-dong-252621.html",
+      "publisher": "Báo Văn hóa",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Bộ Công an khuyến cáo KOL không chia sẻ, phát tán thông tin sai sự thật",
+      "url": "https://nhadautu.vn/bo-cong-an-khuyen-cao-kol-khong-chia-se-phat-tan-thong-tin-sai-su-that-d94820.html",
+      "publisher": "Nhà Đầu tư",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Xử phạt trường hợp chia sẻ, đăng tải thông tin sai sự thật, xúc phạm lực lượng CSGT trên môi trường mạng",
+      "url": "https://daibieunhandan.vn/xu-phat-truong-hop-chia-se-dang-tai-thong-tin-sai-su-that-xuc-pham-luc-luong-canh-sat-giao-thong-tren-moi-truong-mang-10406206.html",
+      "publisher": "Báo Đại biểu Nhân dân",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Công an phường Cam Đường xử phạt hành vi chia sẻ nội dung phản cảm trên không gian mạng",
+      "url": "https://baolaocai.vn/cong-an-phuong-cam-duong-xu-phat-hanh-vi-chia-se-noi-dung-phan-cam-tren-khong-gian-mang-post888990.html",
+      "publisher": "Báo Lào Cai",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Tài liệu tuyên truyền Luật An ninh mạng năm 2025",
+      "url": "https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx",
+      "publisher": "UBND xã Tân Phong, Lai Châu",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Những điểm mới của Luật An ninh mạng có hiệu lực từ 1/7",
+      "url": "https://baomoi.com/Tag/nh%C3%A2n-ph%E1%BA%A9m/trang10.epi",
+      "publisher": "Báo Mới",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Thông tin sai sự thật trên mạng xã hội: Có đúng tăng mức phạt từ 7,5 triệu lên 50 triệu đồng?",
+      "url": "https://luatvietnam.vn/hanh-chinh/thong-tin-sai-su-that-tren-mang-xa-hoi-tang-muc-phat-tu-75-trieu-len-50-trieu-dong-570-110338-article.html",
+      "publisher": "LuatVietnam",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Cung cấp, chia sẻ thông tin giả mạo, sai sự thật trên mạng xã hội bị phạt đến 50 triệu đồng",
+      "url": "https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong",
+      "publisher": "Cổng TTĐT tỉnh Hà Tĩnh",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Hải Phòng: Xử phạt 12,5 triệu đồng người đàn ông đăng thông tin sai sự thật",
+      "url": "https://lsvn.vn/hai-phong-xu-phat-12-5-trieu-dong-nguoi-dan-ong-dang-thong-tin-sai-su-that-a178789.html",
+      "publisher": "Tạp chí Luật sư Việt Nam",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Lợi dụng quyền tự do dân chủ, đăng bài sai sự thật trên Facebook lĩnh 01 năm tù",
+      "url": "https://baophapluat.vn/loi-dung-quyen-tu-do-dan-chu-dang-bai-sai-su-that-tren-facebook-linh-01-nam-tu-post440154.html",
+      "publisher": "Báo Pháp luật Việt Nam",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Tội làm, tàng trữ, phát tán thông tin chống Nhà nước CHXHCN Việt Nam (Điều 117 BLHS)",
+      "url": "https://luatminhkhue.vn/toi-lam--tang-tru--phat-tan--to-chuc--cuong-ep--xui-giuc-chong-nha-nuoc-chxhcn-viet-nam.aspx",
+      "publisher": "Luật Minh Khuê",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Bộ Công an: Việt Tân là tổ chức khủng bố",
+      "url": "https://thanhtra.com.vn/an-ninh-trat-tu-D718A18CA/bo-cong-an-viet-tan-la-to-chuc-khung-bo-67F19391.html",
+      "publisher": "Báo Thanh tra",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Cổng Thông tin điện tử Chính phủ",
+      "url": "https://chinhphu.vn",
+      "publisher": "Cổng TTĐT Chính phủ",
+      "checkedAt": "2026-10-24"
+    },
+    {
       "title": "Cổng thông tin điện tử Bộ Công an",
       "url": "https://bocongan.gov.vn",
       "publisher": "Bộ Công an",
-      "checkedAt": "2026-10-18"
-    },
-    {
-      "title": "Tài liệu tuyên truyền Luật An ninh mạng",
-      "url": "https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx",
-      "publisher": "UBND xã Tân Phong",
-      "checkedAt": "2026-10-24"
-    },
-    {
-      "title": "Cảnh báo, xử lý thông tin giả mạo, sai sự thật trên mạng xã hội",
-      "url": "https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong",
-      "publisher": "Cổng thông tin điện tử Hà Tĩnh",
-      "checkedAt": "2026-10-24"
-    },
-    {
-      "title": "Cổng thông tin điện tử Chính phủ",
-      "url": "https://chinhphu.vn",
-      "publisher": "Cổng thông tin điện tử Chính phủ",
       "checkedAt": "2026-10-24"
     }
   ]

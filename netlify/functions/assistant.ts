@@ -1,6 +1,7 @@
 type Source = { title: string; url: string; publisher: string; passage: string; checkedAt?: string };
 const model = 'gemini-2.5-flash';
 const maxSources = 5;
+const greetingPattern = /^(xin chào|chào|hello|hi|hey|alo|bạn ơi|yo)\b/i;
 
 function configuredSources(): Source[] {
   try {
@@ -20,12 +21,13 @@ async function sources(request: Request): Promise<Source[]> {
   try {
     const response = await fetch(new URL('/data/quiz.official.json', request.url), { cache: 'no-store' });
     if (!response.ok) return configured;
-    const dataset = await response.json() as { questions?: { question?: string; explanation?: string; sources?: Omit<Source, 'passage'>[] }[] };
+    const dataset = await response.json() as { sourceCatalog?: Source[]; questions?: { question?: string; explanation?: string; sources?: Omit<Source, 'passage'>[] }[] };
+    const catalogSources = (dataset.sourceCatalog ?? []).filter(source => source.passage.length > 20);
     const quizSources = (dataset.questions ?? []).flatMap(question => (question.sources ?? []).map(source => ({
       ...source,
       passage: `${question.question ?? ''} ${question.explanation ?? ''}`
     })));
-    const all = [...configured, ...quizSources];
+    const all = [...configured, ...catalogSources, ...quizSources];
     return all.filter((source, index) => all.findIndex(candidate => candidate.url === source.url) === index);
   } catch {
     return configured;
@@ -57,6 +59,15 @@ export default async function handler(request: Request): Promise<Response> {
   const message = body && typeof body === 'object' && typeof (body as Record<string, unknown>).message === 'string'
     ? ((body as Record<string, string>).message).trim() : '';
   if (!message || message.length > 1200) return Response.json({ status: 'error', answer: '', citations: [] }, { status: 400 });
+  if (greetingPattern.test(message)) {
+    return Response.json({
+      status: 'greeting',
+      answer: 'Xin chào! Tôi là trợ lý AI chuyên hỗ trợ đối chiếu thông tin trên mạng dựa trên các nguồn đã được đưa vào kho kiểm chứng. Bạn có thể hỏi tôi về nguồn gốc, bối cảnh, quy định hoặc cách kiểm tra một thông tin. Tôi sẽ cố gắng trả lời rõ ràng và luôn kèm dẫn chứng; nếu kho nguồn chưa đủ, tôi sẽ nói rõ để bạn không vội tin hoặc lan truyền.',
+      citations: [],
+      confidence: 100,
+      confidenceLabel: 'high'
+    });
+  }
   const availableSources = await sources(request);
   const context = relevantSources(message, availableSources);
   if (!context.length) {
@@ -65,13 +76,13 @@ export default async function handler(request: Request): Promise<Response> {
     return Response.json({
       status: 'insufficient_evidence',
       answer: citations.length
-        ? `Chưa tìm thấy bằng chứng trực tiếp cho câu hỏi trong kho nguồn đã duyệt. Bạn có thể mở các nguồn liên quan để tự đối chiếu: ${citations.map(source => `[${source.id}]`).join(', ')}`
-        : 'Chưa tìm thấy bằng chứng trực tiếp trong kho nguồn đã duyệt.',
+        ? `Xin lỗi, tôi chưa thể xác minh câu hỏi này từ kho nguồn đã duyệt. Độ tin cậy hiện tại chỉ khoảng 10% vì chưa có bằng chứng trực tiếp. Bạn có thể mở các nguồn liên quan ${citations.map(source => `[${source.id}]`).join(', ')} để tự đối chiếu.`
+        : 'Xin lỗi, tôi chưa thể xác minh câu hỏi này vì chưa tìm thấy bằng chứng trực tiếp trong kho nguồn đã duyệt. Độ tin cậy hiện tại chỉ khoảng 10%.',
       citations, confidence: 10, confidenceLabel: 'low',
-      warning: 'Các nguồn dưới đây chỉ là nguồn liên quan để tham khảo, không chứng minh khẳng định trong câu hỏi. Không nên xem hoặc lan truyền thông tin này như đã được xác thực.'
+      warning: 'Cảnh báo: Đây chưa phải thông tin đã được xác thực. Không nên tin chắc, đăng lại hoặc lan truyền cho người khác. Hãy cung cấp nguồn gốc hoặc kiểm tra trực tiếp với cơ quan có thẩm quyền.'
     });
   }
-  const prompt = `Bạn là trợ lý kiểm chứng thông tin. Chỉ dùng CONTEXT, không dùng kiến thức bên ngoài. Nếu CONTEXT không đủ, nói rõ chưa đủ bằng chứng. Trả về đúng JSON với các khóa: status (answered|partial|insufficient_evidence), answer (tiếng Việt, chèn [S1]...), confidence (0-100, mức độ khớp với nguồn chứ không phải xác suất sự thật), confidenceLabel (high|medium|low), warning (cảnh báo ngắn nếu chưa đủ bằng chứng), citationIds (mảng S1...). Không bịa URL, ngày tháng hay trích dẫn.\n\nQUESTION:\n${message}\n\nCONTEXT:\n${context.map((source, index) => `[S${index + 1}] ${source.title} | ${source.url}\n${source.passage}`).join('\n\n')}`;
+  const prompt = `Bạn là trợ lý kiểm chứng thông tin. Chỉ dùng CONTEXT, không dùng kiến thức bên ngoài. Nếu CONTEXT không đủ, xin lỗi và nói rõ chưa đủ bằng chứng; không đoán hoặc trình bày suy luận như sự thật. Luôn nhắc người dùng kiểm tra nguồn gốc khi câu trả lời chưa chắc chắn. Trả về đúng JSON với các khóa: status (answered|partial|insufficient_evidence), answer (tiếng Việt, chèn [S1]...), confidence (0-100, mức độ khớp với nguồn chứ không phải xác suất sự thật), confidenceLabel (high|medium|low), warning (cảnh báo ngắn nếu chưa đủ bằng chứng), citationIds (mảng S1...). Không bịa URL, ngày tháng hay trích dẫn.\n\nQUESTION:\n${message}\n\nCONTEXT:\n${context.map((source, index) => `[S${index + 1}] ${source.title} | ${source.url}\n${source.passage}`).join('\n\n')}`;
   let response: Response;
   try {
     response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`, {
