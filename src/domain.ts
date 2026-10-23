@@ -28,7 +28,7 @@ export function isSource(value: unknown): value is Source {
 export function isLevel(value: unknown): value is Level { return levels.includes(value as Level); }
 export function validateDataset(value: unknown, official = true): value is Dataset {
   if (!record(value) || !nonempty(value.datasetVersion) || typeof value.approvedForProduction !== 'boolean' || !Array.isArray(value.questions)) return false;
-  if (official && (value.approvedForProduction !== true || value.questions.length !== 15)) return false;
+  if (official && (value.approvedForProduction !== true || value.questions.length !== 30)) return false;
   if (!official && value.approvedForProduction !== false) return false;
   const ids = new Set<string>();
   for (const q of value.questions) {
@@ -46,7 +46,7 @@ export function validateDataset(value: unknown, official = true): value is Datas
     ids.add(q.id);
   }
   const questions = value.questions as Question[];
-  return official ? levels.every(l => questions.filter(q => q.level === l).length === 5) : questions.length > 0;
+  return official ? levels.every(l => questions.filter(q => q.level === l).length === 10) : questions.length > 0;
 }
 export function questionsFor(data: Dataset, level: Level) { return data.questions.filter(q => q.level === level); }
 export function newAttempt(data: Dataset, level: Level): Attempt {

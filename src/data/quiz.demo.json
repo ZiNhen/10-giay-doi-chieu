@@ -1,7 +1,7 @@
 {
   "datasetVersion": "DEMO_ONLY_2026-10-18",
   "approvedForProduction": false,
-  "notice": "TÌNH HUỐNG GIẢ ĐỊNH — 3 câu mẫu, KHÔNG phải 15 câu chính thức",
+  "notice": "TÌNH HUỐNG GIẢ ĐỊNH — 3 câu mẫu, KHÔNG phải 30 câu chính thức",
   "questions": [
     {
       "id": "DEMO_BASIC_01",
