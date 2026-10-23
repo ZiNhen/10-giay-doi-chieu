@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, FileSearch, RotateCcw, X } from 'lucide-react';
 import { DemoNotice, Loading, Sources } from './components';
@@ -6,6 +6,8 @@ import { isLevel, levels, levelNames, newAttempt, questionsFor, score, submitAns
 import { useQuiz } from './quiz-context';
 import { lessons } from './content';
 import { Assistant } from './Assistant';
+import { useAuth } from './auth';
+import { saveQuizResult } from './quiz-results';
 
 export function QuizPage() {
   const { data, loading, attempt, update } = useQuiz();
@@ -35,15 +37,27 @@ export function QuizPage() {
 
 export function ResultPage() {
   const { data, loading, attempt, update } = useQuiz();
+  const { user } = useAuth();
+  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveError, setSaveError] = useState('');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!user || loading || !attempt?.completedAt || !validateAttempt(attempt, data) || saveState !== 'idle') return;
+    const points = score(attempt, data);
+    setSaveState('saving');
+    void saveQuizResult(user.id, attempt, data, points).then(result => {
+      if (result.error) { setSaveError(result.error); setSaveState('error'); }
+      else setSaveState('saved');
+    });
+  }, [attempt, data, loading, saveState, user]);
   if (loading) return <Loading />;
   if (!attempt?.completedAt || !validateAttempt(attempt, data)) return <section className="panel empty reading"><CheckCircle2 size={48} /><h1>Chưa có kết quả hoàn chỉnh</h1><p>Hoàn thành một lượt Quiz để xem lựa chọn và giải thích của bạn.</p><Link to="/quiz" className="button primary">Làm Quiz <ArrowRight size={18} /></Link></section>;
   const questions = questionsFor(data, attempt.level);
   const points = score(attempt, data);
   const mistakes = questions.filter(q => attempt.answers.find(a => a.questionId === q.id)?.selectedOptionId !== q.correctOptionId);
   const missedSkills = new Set(mistakes.map(q => q.skillTag));
-  return <div className="reading"><DemoNotice /><section className="panel result-hero"><div className="score-circle"><b>{points}<span>/{questions.length}</span></b><small>câu đúng</small></div><div><p className="eyebrow">{levelNames[attempt.level]}</p><h1>{data.approvedForProduction ? 'Một bước hiểu rõ hơn' : 'Bạn đã xem xong minh họa'}</h1><p>{data.approvedForProduction ? 'Điều đáng giữ lại là cách bạn kiểm tra thông tin.' : 'Kết quả này chỉ dành cho câu mẫu, không phản ánh năng lực của bạn.'}</p><progress aria-label="Số câu trả lời đúng" value={points} max={questions.length} /></div></section>
+  return <div className="reading"><DemoNotice /><section className="panel result-hero"><div className="score-circle"><b>{points}<span>/{questions.length}</span></b><small>câu đúng</small></div><div><p className="eyebrow">{levelNames[attempt.level]}</p><h1>{data.approvedForProduction ? 'Một bước hiểu rõ hơn' : 'Bạn đã xem xong minh họa'}</h1><p>{data.approvedForProduction ? 'Điều đáng giữ lại là cách bạn kiểm tra thông tin.' : 'Kết quả này chỉ dành cho câu mẫu, không phản ánh năng lực của bạn.'}</p><progress aria-label="Số câu trả lời đúng" value={points} max={questions.length} />{saveState === 'saving' && <p className="subtle">Đang lưu kết quả vào tài khoản…</p>}{saveState === 'saved' && <p className="account-message">Đã lưu kết quả: {Math.round((points / questions.length) * 100)}% ({points}/{questions.length} câu đúng).</p>}{saveState === 'error' && <p className="notice warning">Chưa lưu được kết quả vào tài khoản: {saveError}</p>}</div></section>
     <div className="section-heading section"><h2>Cùng xem lại</h2><button className="text-button" onClick={() => { const allOpen = questions.every(q => expanded[q.id] ?? mistakes.includes(q)); setExpanded(Object.fromEntries(questions.map(q => [q.id, !allOpen]))); }}>Mở / đóng tất cả</button></div>
     <div className="review-list">{questions.map((q, i) => { const a = attempt.answers.find(a => a.questionId === q.id)!; const wrong = a.selectedOptionId !== q.correctOptionId; const open = expanded[q.id] ?? wrong;
       return <section className="panel review-item" key={q.id}><h3><button aria-expanded={open} aria-controls={`review-${q.id}`} onClick={() => setExpanded(v => ({ ...v, [q.id]: !open }))}><span className={wrong ? 'review-marker wrong' : 'review-marker'}>{i + 1}</span><span>{q.question}<small>{wrong ? 'Cần xem lại' : 'Trả lời đúng'}</small></span><span aria-hidden="true">{open ? '−' : '+'}</span></button></h3><div id={`review-${q.id}`} hidden={!open} className="review-body">{q.isSyntheticScenario && <p className="eyebrow">TÌNH HUỐNG GIẢ ĐỊNH</p>}<p><b>Bạn chọn: </b>{q.options.find(o => o.id === a.selectedOptionId)?.text}</p><p><b>Đáp án: </b>{q.options.find(o => o.id === q.correctOptionId)?.text}</p><p>{q.explanation}</p><Sources sources={q.sources} /><Link className="text-link" to={`/learn#${q.skillTag}`}>Học thêm kỹ năng này <ArrowRight size={16} /></Link></div></section>;
