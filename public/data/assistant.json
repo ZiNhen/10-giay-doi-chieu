@@ -4,10 +4,28 @@
   "verifiedFreeThrough": "2026-11-09",
   "approvedSources": [
     {
-      "title": "Gần 80 năm xây dựng, chiến đấu và trưởng thành của lực lượng Công an nhân dân",
-      "url": "https://bocongan.gov.vn/bai-viet/hoan-thanh-xuat-sac-nhiem-vu-bao-ve-an-ninh-quoc-gia-dau-tranh-lam-that-bai-am-muu-hoat-dong-cua-cac-the-luc-thu-dich-phan-dong-bao-ve-tuyet-doi-an-toan-dang-nha-nuoc-va-che-do-xa-hoi-chu-nghia-1751870349",
+      "title": "Cổng thông tin điện tử Bộ Công an",
+      "url": "https://bocongan.gov.vn",
       "publisher": "Bộ Công an",
       "checkedAt": "2026-10-18"
+    },
+    {
+      "title": "Tài liệu tuyên truyền Luật An ninh mạng",
+      "url": "https://tanphong.laichau.gov.vn/upload/103836/20260614/9__Tai_lieu_tuyen_truyen_Luat_An_ninh_mang_82cb2.docx",
+      "publisher": "UBND xã Tân Phong",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Cảnh báo, xử lý thông tin giả mạo, sai sự thật trên mạng xã hội",
+      "url": "https://hatinh.gov.vn/vi/bai-viet/cung-cap-chia-se-thong-tin-gia-mao-sai-su-that-tren-mang-xa-hoi-bi-phat-den-50-trieu-dong",
+      "publisher": "Cổng thông tin điện tử Hà Tĩnh",
+      "checkedAt": "2026-10-24"
+    },
+    {
+      "title": "Cổng thông tin điện tử Chính phủ",
+      "url": "https://chinhphu.vn",
+      "publisher": "Cổng thông tin điện tử Chính phủ",
+      "checkedAt": "2026-10-24"
     }
   ]
 }
