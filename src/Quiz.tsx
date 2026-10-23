@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileSearch, RotateCcw, X } from 'lucide-react';
 import { DemoNotice, Loading, Sources } from './components';
 import { isLevel, levels, levelNames, newAttempt, questionsFor, score, submitAnswer, validateAttempt, type Level } from './domain';
 import { useQuiz } from './quiz-context';
 import { lessons } from './content';
+import { Assistant } from './Assistant';
 
 export function QuizPage() {
   const { data, loading, attempt, update } = useQuiz();
@@ -13,6 +14,7 @@ export function QuizPage() {
   const [active, setActive] = useState(params.get('resume') === '1');
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState('');
+  const [showAssistant, setShowAssistant] = useState(false);
   const navigate = useNavigate();
   if (loading) return <Loading />;
   const start = (level: Level) => { update(() => newAttempt(data, level)); setIndex(0); setSelected(''); setActive(true); };
@@ -25,10 +27,10 @@ export function QuizPage() {
   const answer = attempt.answers.find(a => a.questionId === question.id);
   const correct = answer?.selectedOptionId === question.correctOptionId;
   const chosen = answer?.selectedOptionId ?? selected;
-  return <div className="reading"><DemoNotice /><div className="section-heading"><span className="eyebrow">{levelNames[attempt.level]}</span><span>Câu {index + 1}/{questions.length}</span></div><progress aria-label="Tiến độ trả lời" value={attempt.answers.length} max={questions.length} />
+  return <div className={`quiz-workspace ${showAssistant ? 'assistant-open' : ''}`}><div className="reading"><DemoNotice /><div className="section-heading"><span className="eyebrow">{levelNames[attempt.level]}</span><span>Câu {index + 1}/{questions.length}</span></div><progress aria-label="Tiến độ trả lời" value={attempt.answers.length} max={questions.length} />
     <section className="panel question" key={question.id}><p className="eyebrow">{question.isSyntheticScenario ? 'TÌNH HUỐNG GIẢ ĐỊNH' : 'TÌNH HUỐNG ĐỐI CHIẾU'}</p><form onSubmit={e => { e.preventDefault(); if (selected && !answer) update(a => a ? submitAnswer(a, data, question.id, selected) : a); }}><fieldset disabled={!!answer}><legend><h1>{question.question}</h1></legend><div className="options">{question.options.map((o, i) => <label key={o.id} className={`option ${chosen === o.id ? 'selected' : ''} ${answer && o.id === question.correctOptionId ? 'correct' : ''}`}><input type="radio" name="answer" value={o.id} checked={chosen === o.id} onChange={() => setSelected(o.id)} /><span className="option-letter">{String.fromCharCode(65 + i)}</span><span>{o.text}</span></label>)}</div></fieldset>{!answer && <button type="submit" className="button primary" disabled={!selected}>Xác nhận câu trả lời <ArrowRight size={17} /></button>}</form>
       {answer && <div className={`feedback ${correct ? 'success' : ''}`} role="status"><h2>{correct ? 'Lựa chọn phù hợp!' : 'Cùng nhìn lại một chút'}</h2><p><b>Đáp án: </b>{question.options.find(o => o.id === question.correctOptionId)?.text}</p><p>{question.explanation}</p><Sources sources={question.sources} /><button className="button primary" onClick={() => { if (index === questions.length - 1) navigate('/quiz/result'); else { setIndex(i => i + 1); setSelected(''); window.scrollTo(0, 0); } }}>{index === questions.length - 1 ? 'Xem kết quả' : 'Câu tiếp theo'} <ArrowRight size={17} /></button></div>}
-    </section><button className="text-button" onClick={() => setActive(false)}>Quay lại chọn cấp độ</button></div>;
+    </section><div className="quiz-actions"><button className="button secondary ask-ai" onClick={() => setShowAssistant(value => !value)}><FileSearch size={17} /> {showAssistant ? 'Ẩn trợ lý AI' : 'Hỏi AI khi làm Quiz'}</button><button className="text-button" onClick={() => setActive(false)}>Quay lại chọn cấp độ</button></div></div>{showAssistant && <aside className="quiz-assistant panel"><div className="quiz-assistant-heading"><h2>Hỏi AI trong lúc làm Quiz</h2><button className="icon-button" aria-label="Đóng trợ lý AI" onClick={() => setShowAssistant(false)}><X size={18} /></button></div><Assistant embedded /></aside>}</div>;
 }
 
 export function ResultPage() {
